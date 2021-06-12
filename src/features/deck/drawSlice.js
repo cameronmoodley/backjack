@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { splitArray } from '../../helpers/utils';
 
 export const getCards = createAsyncThunk(
 	'deck/getCards',
@@ -32,9 +33,13 @@ const drawSlice = createSlice({
 			state.status = 'loading';
 		},
 		[getCards.fulfilled]: (state, { payload }) => {
-			// Todo add in checks
-			console.log(payload);
-			state.initialDraw = false;
+			if (state.initialDraw) {
+				state.initialDraw = false;
+				const playerCards = splitArray(payload.cards);
+				// TODO: Fix to make this dynamic
+				state.dealer = playerCards.cards1;
+				state.player = playerCards.cards3;
+			}
 		},
 		[getCards.rejected]: (state) => {
 			state.status = 'failed';

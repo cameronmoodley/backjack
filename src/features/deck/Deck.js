@@ -4,6 +4,8 @@ import { getInitialDeck } from '../deck/initialDeckSlice';
 import { getCards } from '../deck/drawSlice';
 import { Button } from 'semantic-ui-react';
 
+import Cards from '../cards/Cards';
+
 function Deck() {
 	const dispatch = useDispatch();
 	const initialDeck = useSelector((state) => state.initialDeck);
@@ -20,20 +22,36 @@ function Deck() {
 				cardCount: drawData.initialDraw ? '4' : '1',
 			})
 		);
-		console.log('it weks');
 	};
+
+	if (initialDeck.deckId && drawData.initialDraw) {
+		return (
+			<Button
+				positive
+				onClick={() => {
+					drawCard();
+				}}>
+				Play Black Jack
+			</Button>
+		);
+	}
 
 	return (
 		<div>
-			{initialDeck.deckId && (
-				<Button
-					positive
-					onClick={() => {
-						drawCard();
-					}}>
-					Draw Cards
-				</Button>
-			)}
+			<h2>Dealer</h2>
+			<div className='flex'>
+				{drawData.dealer.map(({ image }, i) => {
+					console.log(image);
+					return <Cards key={i} imgSrc={image} />;
+				})}
+			</div>
+			<h2>Player</h2>
+			<div className='flex'>
+				{drawData.player.map(({ image }, i) => {
+					console.log(image);
+					return <Cards key={i} imgSrc={image} />;
+				})}
+			</div>
 		</div>
 	);
 }

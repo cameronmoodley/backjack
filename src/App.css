@@ -20,3 +20,12 @@ body {
 	border-radius: 2px;
 	-webkit-border-radius: 19px;
 }
+
+.flex {
+	display: flex;
+}
+
+.ui.card {
+	margin: 0 10px 30px 0 !important;
+	width: 150px !important;
+}
