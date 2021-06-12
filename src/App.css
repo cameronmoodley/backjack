@@ -1,5 +1,5 @@
 body {
-	background-image: url('./images/blackjack.jpg');
+	background-image: url('./images/blackjack.jpg') !important;
 	background-size: cover;
 	width: 100%;
 	overflow-x: hidden;
