@@ -7,7 +7,6 @@ function App() {
 	return (
 		<div className='app'>
 			<h1>21's</h1>
-
 			<Deck />
 		</div>
 	);
