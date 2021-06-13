@@ -17,7 +17,5 @@ export const cardValueCalculator = (card) => {
 };
 
 export const addArray = (arr) => {
-	return arr.reduce(
-		(a, b) => cardValueCalculator(a.value) + cardValueCalculator(b.value)
-	);
+	return arr.reduce((a, b) => a + b);
 };
