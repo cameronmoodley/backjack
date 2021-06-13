@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { splitArray } from '../../helpers/utils';
+import { addArray } from '../../helpers/arrayUtils';
 
 export const getCards = createAsyncThunk(
 	'deck/getCards',
@@ -15,8 +16,14 @@ const drawSlice = createSlice({
 	initialState: {
 		initialDraw: true,
 		playerTurn: true,
-		player: [],
-		dealer: [],
+		player: {
+			cards: [],
+			total: 0,
+		},
+		dealer: {
+			cards: [],
+			total: 0,
+		},
 		status: null,
 	},
 	reducers: {
@@ -37,8 +44,10 @@ const drawSlice = createSlice({
 				state.initialDraw = false;
 				const playerCards = splitArray(payload.cards);
 				// TODO: Fix to make this dynamic
-				state.dealer = playerCards.cards1;
-				state.player = playerCards.cards3;
+				state.dealer.cards = playerCards.cards1;
+				state.player.cards = playerCards.cards3;
+				state.dealer.total = addArray(playerCards.cards1);
+				state.player.total = addArray(playerCards.cards3);
 			}
 		},
 		[getCards.rejected]: (state) => {

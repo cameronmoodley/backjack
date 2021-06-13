@@ -39,18 +39,34 @@ function Deck() {
 	return (
 		<div>
 			<h2>Dealer</h2>
+			<h3>Card Total: {drawData.dealer.total}</h3>
 			<div className='flex'>
-				{drawData.dealer.map(({ image }, i) => {
-					console.log(image);
+				{drawData.dealer.cards.map(({ image }, i) => {
 					return <Cards key={i} imgSrc={image} />;
 				})}
 			</div>
 			<h2>Player</h2>
+			<h3>Card Total: {drawData.player.total}</h3>
 			<div className='flex'>
-				{drawData.player.map(({ image }, i) => {
-					console.log(image);
+				{drawData.player.cards.map(({ image }, i) => {
 					return <Cards key={i} imgSrc={image} />;
 				})}
+			</div>
+			<div className='flex'>
+				<Button
+					positive
+					onClick={() => {
+						console.log('Hit me forest');
+					}}>
+					Hit
+				</Button>
+				<Button
+					positive
+					onClick={() => {
+						console.log('Stood');
+					}}>
+					Stand
+				</Button>
 			</div>
 		</div>
 	);
